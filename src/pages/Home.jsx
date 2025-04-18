@@ -1,9 +1,7 @@
-// File: src/pages/Home.jsx
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import marketingImg from '../assets/marketing.png';
 import { motion, useInView } from 'framer-motion';
-import Typewriter from 'typewriter-effect';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -70,13 +68,9 @@ export default function Home() {
           transition={{ delay: 0.5 }}
           className="text-5xl font-extrabold text-blue-800 mb-6 leading-tight"
         >
-          <Typewriter
-            options={{
-              strings: ['Earn Money Online', 'Complete Simple Tasks', 'Get Paid Instantly'],
-              autoStart: true,
-              loop: true,
-            }}
-          />
+          <span className="inline-block h-6 text-blue-800">
+            <CustomTypewriter words={['Earn Money Online', 'Complete Simple Tasks', 'Get Paid Instantly']} />
+          </span>
         </motion.h2>
 
         <motion.p
@@ -194,4 +188,32 @@ export default function Home() {
       </footer>
     </motion.div>
   );
+}
+
+// ✅ Custom Typewriter Component (React 19+ Compatible)
+function CustomTypewriter({ words, delay = 150 }) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (index >= words.length) return setIndex(0);
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) =>
+        deleting ? prev - 1 : prev + 1
+      );
+
+      if (!deleting && subIndex === words[index].length) {
+        setTimeout(() => setDeleting(true), 1000);
+      } else if (deleting && subIndex === 0) {
+        setDeleting(false);
+        setIndex((prev) => (prev + 1) % words.length);
+      }
+    }, deleting ? 50 : delay);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, deleting, index, words, delay]);
+
+  return <span>{words[index].substring(0, subIndex)}<span className="animate-pulse">|</span></span>;
 }
