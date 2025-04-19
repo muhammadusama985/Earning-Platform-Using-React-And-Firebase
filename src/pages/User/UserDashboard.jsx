@@ -175,19 +175,23 @@ export default function UserDashboard() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      // Only run this logic if screen width is <= 768px (mobile/tablet)
+      if (window.innerWidth <= 768 && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         setSidebarOpen(false);
       }
     };
+  
     if (sidebarOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
+  
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [sidebarOpen]);
+  
 
   const isActive = (path) => location.pathname === path;
 
