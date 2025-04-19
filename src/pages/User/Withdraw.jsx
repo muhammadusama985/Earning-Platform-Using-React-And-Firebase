@@ -35,12 +35,12 @@ export default function Withdraw() {
   };
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 overflow-x-hidden flex items-center">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 overflow-x-hidden flex items-center justify-center px-4 pt-20 pb-12">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="bg-white w-full max-w-xl ml-40 p-10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] text-center relative"
+        className="bg-white w-full max-w-xl p-6 sm:p-10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] text-center relative"
       >
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

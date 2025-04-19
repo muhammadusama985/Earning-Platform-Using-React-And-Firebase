@@ -41,12 +41,12 @@ export default function Profile() {
   };
 
   return (
-<div className="min-h-screen w-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 overflow-x-hidden pl-40 pr-4 pt-20 pb-12 flex items-center">
-<motion.div 
+    <div className="min-h-screen w-screen bg-gradient-to-br from-blue-100 via-white to-blue-50 overflow-x-hidden px-4 pt-20 pb-12 flex items-center justify-center">
+      <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="bg-white w-full max-w-2xl p-10 rounded-2xl shadow-2xl text-center"
+        className="bg-white w-full max-w-2xl p-6 sm:p-10 rounded-2xl shadow-2xl text-center"
       >
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -80,7 +80,7 @@ export default function Profile() {
           className="w-full mb-6 px-4 py-2 border border-blue-300 rounded-md text-center text-blue-900 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
-        <div className="flex justify-around my-8">
+        <div className="flex justify-around my-8 flex-wrap gap-4">
           <div className="text-center">
             <h4 className="text-3xl text-purple-600 font-extrabold">{userStats.tasksCompleted}</h4>
             <p className="text-sm text-gray-600">Tasks Done</p>
